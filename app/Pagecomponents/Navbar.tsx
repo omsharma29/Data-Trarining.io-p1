@@ -28,18 +28,18 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8">
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? 'bg-white backdrop-blur-xl shadow-lg'
-          : 'bg-transparent backdrop-blur-sm'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto py-4">
-          <div className="relative flex items-center justify-between">
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-sm shadow-sm'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="relative flex items-center justify-between">
           {/* Logo */}
           <motion.div
             className="flex items-center space-x-3"
@@ -74,15 +74,17 @@ const Navbar = () => {
           </div>
 
           {/* CTA Button */}
-          <div className='flex gap-4'>
+          <div className='flex items-center gap-2 sm:gap-4'>
           {!sidebar && <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
-            whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.05 }} 
+            whileTap={{ scale: 0.95 }}
+            className="hidden sm:block"
           >
             <RainbowButton 
-              className="bg-emerald-700 max-w-fit hover:bg-primary-dark cursor-pointer text-white px-6 py-2 rounded-lg font-semibold hover-glow"
+              className="bg-emerald-700 hover:bg-primary-dark cursor-pointer text-white px-4 sm:px-6 py-2 rounded-lg font-semibold hover-glow whitespace-nowrap"
             >
              Sign In
             </RainbowButton >
@@ -110,11 +112,11 @@ const Navbar = () => {
           {/* Sidebar */}
           {sidebar && (
             <motion.div
-              initial={{ x: '300' }}
+              initial={{ x: 280 }}
               animate={{ x: 0 }}
-              exit={{ x: '300' }}
+              exit={{ x: 280 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-screen w-64 bg-white shadow-2xl z-50"
+              className="fixed top-0 right-0 h-screen w-[280px] bg-white shadow-2xl z-[200]"
             >
               <div className="p-6">
                 {/* Close button */}
@@ -170,7 +172,7 @@ const Navbar = () => {
         </div>
       </div>
     </motion.nav>
-    </div>
+
   );
 };
 

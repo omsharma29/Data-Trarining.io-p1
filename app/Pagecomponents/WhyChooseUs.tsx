@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const WhyChooseUs = () => {
   return (
-    <section id="why-choose-us" className="py-20 bg-white mask-b-from-80% lg:mask-b-from-65% lg:mask-b-to-80%">
+    <section id="why-choose-us" className="py-20 overflow-hidden bg-white mask-b-from-80% lg:mask-b-from-65% lg:mask-b-to-80%">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content - Story */}
