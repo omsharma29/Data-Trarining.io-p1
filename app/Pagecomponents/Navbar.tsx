@@ -8,6 +8,7 @@ import { RainbowButton } from '@/components/ui/rainbow-button';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [sidebar, setSidebar] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +74,7 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className='flex gap-4'>
-          <motion.div
+          {!sidebar && <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
@@ -84,11 +85,11 @@ const Navbar = () => {
             >
              Sign In
             </RainbowButton >
-          </motion.div>
+          </motion.div>}
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={() => setSidebar(!sidebar)}>
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -104,6 +105,66 @@ const Navbar = () => {
               </svg>
             </Button>
           </div>
+
+          {/* Sidebar */}
+          {sidebar && (
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed top-0 right-0 h-screen w-64 bg-white shadow-2xl z-50"
+            >
+              <div className="p-6">
+                {/* Close button */}
+                <div className="flex justify-end mb-8">
+                  <Button variant="ghost" size="icon" onClick={() => setSidebar(false)}>
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </Button>
+                </div>
+
+                {/* Mobile Navigation Links */}
+                <div className="flex flex-col space-y-4">
+                  {navItems.map((item, index) => (
+                    <motion.a
+                      key={item.name}
+                      href={item.href}
+                      className="text-neutral-500 hover:text-black transition-colors duration-200 font-medium px-4 py-2 rounded-lg hover:bg-gray-100"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      onClick={() => setSidebar(false)}
+                    >
+                      {item.name}
+                    </motion.a>
+                  ))}
+                </div>
+
+                {/* Mobile Sign In Button */}
+                <div className="mt-8">
+                  <RainbowButton 
+                    className="w-full bg-emerald-700 hover:bg-primary-dark cursor-pointer text-white px-6 py-2 rounded-lg font-semibold hover-glow"
+                    onClick={() => setSidebar(false)}
+                  >
+                    Sign In
+                  </RainbowButton>
+                </div>
+              </div>
+            </motion.div>
+          )}
+          
           </div>
         </div>
       </div>
