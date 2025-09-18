@@ -74,7 +74,7 @@ const Footer = () => {
     <footer className=" text-white relative overflow-hidden">
 
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6  z-10">
         {/* Main Footer Content */}
         <div className="py-16">
           <div className="grid lg:grid-cols-6 gap-12">
@@ -132,7 +132,7 @@ const Footer = () => {
             </div>
 
             {/* Links Sections */}
-            <div className="lg:col-span-4 grid md:grid-cols-4 gap-8">
+            <div className="lg:col-span-4 grid grid-cols-3 md:grid-cols-4  gap-8">
               {Object.entries(footerLinks).map(([category, links], categoryIndex) => (
                 <motion.div
                   key={category}
@@ -182,7 +182,7 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <span>Made with ❤️ for data enthusiasts</span>
+              <span>Madefor Data Training.io</span>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span>All systems operational</span>
