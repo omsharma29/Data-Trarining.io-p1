@@ -28,17 +28,18 @@ const Navbar = () => {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 max-w-6xl mx-auto rounded ${isScrolled
-          ? 'bg-white backdrop-blur-xl shadow-lg rounded-3xl mt-1 mx-2'
-          : 'bg-transparent backdrop-blur-sm mx-2'
+    <div className="w-full px-4 sm:px-6 lg:px-8">
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+          ? 'bg-white backdrop-blur-xl shadow-lg'
+          : 'bg-transparent backdrop-blur-sm'
         }`}
-    >
-      <div className="container mx-auto px-2 sm:px-6 py-4">
-        <div className="flex items-center justify-between">
+      >
+        <div className="max-w-7xl mx-auto py-4">
+          <div className="relative flex items-center justify-between">
           {/* Logo */}
           <motion.div
             className="flex items-center space-x-3"
@@ -56,7 +57,7 @@ const Navbar = () => {
           </motion.div>
 
           {/* Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-7">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -81,7 +82,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
           >
             <RainbowButton 
-              className="bg-emerald-700 hover:bg-primary-dark cursor-pointer text-white px-6 py-2 rounded-lg font-semibold hover-glow"
+              className="bg-emerald-700 max-w-fit hover:bg-primary-dark cursor-pointer text-white px-6 py-2 rounded-lg font-semibold hover-glow"
             >
              Sign In
             </RainbowButton >
@@ -91,7 +92,7 @@ const Navbar = () => {
           <div className="lg:hidden">
             <Button variant="ghost" size="icon" onClick={() => setSidebar(!sidebar)}>
               <svg
-                className="w-6 h-6"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -109,9 +110,9 @@ const Navbar = () => {
           {/* Sidebar */}
           {sidebar && (
             <motion.div
-              initial={{ x: '100%' }}
+              initial={{ x: '300' }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
+              exit={{ x: '300' }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="fixed top-0 right-0 h-screen w-64 bg-white shadow-2xl z-50"
             >
@@ -169,6 +170,7 @@ const Navbar = () => {
         </div>
       </div>
     </motion.nav>
+    </div>
   );
 };
 
